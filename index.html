@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Jornada de Aprendizado</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --bg: #0d1b3e;
+    --surface: #152550;
+    --surface-2: #1c2f60;
+    --border: #2a3f72;
+    --accent: #c4b5fd;
+    --accent-soft: rgba(196,181,253,0.15);
+    --green: #4ade80;
+    --green-soft: rgba(74,222,128,0.13);
+    --amber: #fbbf24;
+    --amber-soft: rgba(251,191,36,0.13);
+    --text: #ffffff;
+    --text-muted: #ffffff;
+    --text-dim: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 2.5rem 1rem 5rem;
+  }
+
+  .wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9467rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid rgba(196,181,253,0.3);
+    border-radius: 4px;
+    padding: 4px 12px;
+    margin-bottom: 1rem;
+  }
+
+  .header h1 {
+    font-size: 2.5667rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+  }
+
+  .header h1 span {
+    color: var(--accent);
+  }
+
+  .header p {
+    font-size: 1.2167rem;
+    color: var(--text-dim);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── FRASE MOTIVACIONAL ── */
+  .motivacao {
+    background: var(--surface);
+    border: 1px solid rgba(196,181,253,0.25);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .motivacao-icon {
+    font-size: 1.7667rem;
+    flex-shrink: 0;
+  }
+
+  .motivacao-text {
+    font-size: 1.1667rem;
+    font-style: normal;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  .motivacao-text strong {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  /* ── SEÇÃO ── */
+  .section-label {
+    font-size: 0.8867rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── CARD DE CURSO ATIVO ── */
+  .curso-ativo {
+    background: var(--surface);
+    border: 1px solid rgba(196,181,253,0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .curso-ativo::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--green));
+  }
+
+  .curso-ativo:hover {
+    border-color: var(--accent);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+
+  .curso-ativo-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .curso-ativo-info {}
+
+  .curso-tag {
+    display: inline-block;
+    font-size: 0.8667rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-soft);
+    border: 1px solid rgba(74,222,128,0.25);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-bottom: 0.6rem;
+  }
+
+  .curso-ativo h2 {
+    font-size: 1.4167rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 0.3rem;
+  }
+
+  .curso-ativo .curso-plataforma {
+    font-size: 1.0167rem;
+    color: var(--text-dim);
+  }
+
+  .curso-seta {
+    font-size: 1.5667rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    transition: transform 0.2s;
+  }
+
+  .curso-ativo:hover .curso-seta {
+    transform: translateX(4px);
+  }
+
+  .curso-progresso-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9867rem;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+  }
+
+  .curso-progresso-label span:last-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.32rem;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .bar-bg {
+    height: 6px;
+    background: var(--surface-2);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--green));
+    transition: width 0.5s ease;
+  }
+
+  /* ── PRÓXIMOS CURSOS ── */
+  .proximos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .curso-proximo {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    opacity: 0.75;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .curso-proximo::after {
+    content: 'Em breve';
+    position: absolute;
+    top: 12px; right: 12px;
+    font-size: 0.8167rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: var(--amber-soft);
+    border: 1px solid rgba(251,191,36,0.25);
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+
+  .curso-proximo-icon {
+    font-size: 1.6667rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .curso-proximo h3 {
+    font-size: 1.1167rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+    padding-right: 3.5rem;
+  }
+
+  .curso-proximo p {
+    font-size: 0.9667rem;
+    color: var(--text-dim);
+  }
+
+  /* ── RODAPÉ ── */
+  .footer {
+    text-align: center;
+    font-size: 1.0167rem;
+    color: var(--text-dim);
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  .footer strong {
+    color: var(--accent);
+  }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.8667rem; }
+    .proximos { grid-template-columns: 1fr; }
+    .curso-ativo h2 { font-size: 1.2667rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-badge">✦ Painel de aprendizado</div>
+    <h1>Minha <span>Jornada</span> de<br>Aprendizado</h1>
+    <p>Um lugar para acompanhar cada passo da sua evolução:<br>um curso de cada vez</p>
+  </div>
+
+  <!-- Frase motivacional rotativa -->
+  <div class="motivacao">
+    <div class="motivacao-icon">💡</div>
+    <div class="motivacao-text" id="frase"></div>
+  </div>
+
+  <!-- Curso em andamento -->
+  <div class="section-label">Em andamento</div>
+
+  <a class="curso-ativo" href="https://baptista-cristiane.github.io/curso-claude-hastag-cris/" target="_blank">
+    <div class="curso-ativo-top">
+      <div class="curso-ativo-info">
+        <div class="curso-tag">● Ativo agora</div>
+        <h2>O Ecossistema de IA do Claude</h2>
+        <div class="curso-plataforma">Hashtag Treinamentos · 20 aulas</div>
+      </div>
+      <div class="curso-seta">→</div>
+    </div>
+    <div class="curso-progresso-label">
+      <span id="aulas-label">Carregando progresso...</span>
+      <span id="pct-label"></span>
+    </div>
+    <div class="bar-bg">
+      <div class="bar-fill" id="bar-fill" style="width:0%"></div>
+    </div>
+  </a>
+
+  <!-- Próximos cursos -->
+  <div class="section-label">Próximos cursos</div>
+
+  <div class="proximos">
+    <div class="curso-proximo">
+      <div class="curso-proximo-icon">🤖</div>
+      <h3>Seu próximo curso aqui</h3>
+      <p>Adicione quando quiser</p>
+    </div>
+    <div class="curso-proximo">
+      <div class="curso-proximo-icon">📊</div>
+      <h3>Seu próximo curso aqui</h3>
+      <p>Adicione quando quiser</p>
+    </div>
+    <div class="curso-proximo">
+      <div class="curso-proximo-icon">🎨</div>
+      <h3>Seu próximo curso aqui</h3>
+      <p>Adicione quando quiser</p>
+    </div>
+    <div class="curso-proximo">
+      <div class="curso-proximo-icon">⚡</div>
+      <h3>Seu próximo curso aqui</h3>
+      <p>Adicione quando quiser</p>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <div class="footer">
+    <strong>✦ Consistência é a chave.</strong><br>
+    Cada aula concluída é um passo que ninguém pode tirar de você.
+  </div>
+
+</div>
+
+<script>
+// Frases motivacionais rotativas
+const FRASES = [
+  'O conhecimento de hoje é a <strong>vantagem de amanhã</strong>. Continue.',
+  'Você não precisa ser perfeito — precisa ser <strong>constante</strong>.',
+  'Cada aula concluída é uma versão mais capaz de você sendo construída.',
+  'Aprender é o único investimento que <strong>nunca deprecia</strong>.',
+  '<i>A diferença entre onde você está e onde quer estar chama-se</i> <strong>aprendizado</strong>.',
+  'Não espere motivação — crie o <strong>hábito</strong>. A motivação vem depois.',
+  'Uma aula por dia transforma quem você é em <strong>12 meses</strong>.',
+  'O melhor momento para aprender foi ontem. O segundo melhor é <strong>agora</strong>.',
+];
+
+// Mostra frase do dia (muda a cada dia)
+const idx = new Date().getDate() % FRASES.length;
+document.getElementById('frase').innerHTML = FRASES[idx];
+
+// Lê progresso do curso Claude do localStorage
+const STORAGE_KEY = 'hashtag_claude_progress';
+const TOTAL_AULAS = 20;
+
+try {
+  const done = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  const pct = Math.round((done.length / TOTAL_AULAS) * 100);
+  document.getElementById('aulas-label').textContent = done.length + ' de ' + TOTAL_AULAS + ' aulas concluídas';
+  document.getElementById('pct-label').textContent = pct + '%';
+  document.getElementById('bar-fill').style.width = pct + '%';
+} catch(e) {
+  document.getElementById('aulas-label').textContent = '0 de ' + TOTAL_AULAS + ' aulas concluídas';
+  document.getElementById('pct-label').textContent = '0%';
+}
+</script>
+</body>
+</html>
